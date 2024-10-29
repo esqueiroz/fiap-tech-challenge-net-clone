@@ -1,5 +1,13 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using TechChallenge.Domain.Interfaces;
 using TechChallenge.Infrastructure.Repositories;
+using TechChallenge.UseCase.Interfaces;
+using TechChallenge.UseCase.RegionalUseCase.Adicionar;
+using TechChallenge.UseCase.RegionalUseCase.Alterar;
+using TechChallenge.UseCase.RegionalUseCase.Alterar.Validators;
+using TechChallenge.UseCase.RegionalUseCase.Listar;
+using TechChallenge.UseCase.RegionalUseCase.Obter;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +21,21 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseNpgsql(configuration.GetConnectionString("ConnectionString"));
 }, ServiceLifetime.Scoped);
+
+builder.Services.AddScoped<IRegionalRepository, RegionalRepository>();
+
+builder.Services.AddScoped<IAdicionarRegionalUseCase, AdicionarRegionalUseCase>();
+builder.Services.AddScoped<IValidator<AdicionarRegionalDto>, AdicionarRegionalValidator>();
+
+
+builder.Services.AddScoped<IAlterarRegionalUseCase, AlterarRegionalUseCase>();
+builder.Services.AddScoped<IValidator<AlterarRegionalDto>, AlterarRegionalValidator>();
+
+builder.Services.AddScoped<IObterRegionalUseCase, ObterRegionalUseCase>();
+builder.Services.AddScoped<IValidator<ObterRegionalDto>, ObterRegionalValidator>();
+
+builder.Services.AddScoped<IListarRegionalUseCase, ListarRegionalUseCase>();
+
 
 var app = builder.Build();
 

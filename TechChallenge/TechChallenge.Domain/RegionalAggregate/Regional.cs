@@ -7,7 +7,7 @@
         public string Nome { get; set; }
 
 
-        public ICollection<Contato>? Contatos { get; set; }
+        //        public ICollection<Contato>? Contatos { get; set; }
 
         protected Regional(int ddd, string estado, string nome)
         {
@@ -16,9 +16,9 @@
             Nome = nome;
         }
 
-       public Regional Criar(int ddd, string estado, string nome)
+        public static Regional Criar(int ddd, string estado, string nome)
         {
-            if (ddd <= 0 && ddd > 99) 
+            if (ddd <= 0 && ddd > 99)
                 throw new ArgumentException("DDD inválido");
 
             if (String.IsNullOrWhiteSpace(estado) || estado.Length > 2)
@@ -28,6 +28,15 @@
                 throw new ArgumentException("Nome da Regional inválido");
 
             return new Regional(ddd, estado, nome);
+        }
+
+        public Regional Alterar(int ddd, string estado, string nome)
+        {
+            Ddd = ddd;
+            Estado = estado;
+            Nome = nome;
+
+            return this;
         }
     }
 }

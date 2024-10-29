@@ -9,16 +9,16 @@ namespace TechChallenge.Infrastructure.Configuration
         public void Configure(EntityTypeBuilder<Contato> builder)
         {
             builder.HasKey(p => p.Id);
-            builder.Property(e => e.Id).HasColumnType("UUID");
-            builder.Property(e => e.CriadoEm).HasColumnType("DATETIME").IsRequired();
-            builder.Property(e => e.AlteradoEm).HasColumnType("DATETIME");
-            builder.Property(e => e.Nome).HasColumnType("VARCHAR(100)").HasMaxLength(100).IsRequired();
-            builder.Property(e => e.Telefone).HasColumnType("VARCHAR(9)").HasMaxLength(9).IsRequired();
-            builder.Property(e => e.Email).HasColumnType("VARCHAR(150)").HasMaxLength(150).IsRequired();
+            builder.Property(e => e.Id);
+            builder.Property(e => e.CriadoEm).HasColumnType("timestamp without time zone").IsRequired();
+            builder.Property(e => e.AlteradoEm).HasColumnType("timestamp without time zone");
+            builder.Property(e => e.Nome).HasMaxLength(100).IsRequired();
+            builder.Property(e => e.Telefone).HasMaxLength(9).IsRequired();
+            builder.Property(e => e.Email).HasMaxLength(150).IsRequired();
 
-            builder.HasOne(c => c.Regional)
+            /*builder.HasOne(c => c.Regional)
                 .WithMany(r => r.Contatos)
-                .HasPrincipalKey(r => r.Id);
+                .HasPrincipalKey(r => r.Id);*/
         }
     }
 }

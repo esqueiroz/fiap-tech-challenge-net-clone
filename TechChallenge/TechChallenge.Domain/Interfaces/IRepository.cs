@@ -4,8 +4,8 @@
     {
         IList<T> ObterTodos();
         T ObterPorId(Guid id);
-        void Cadastrar( T entidade);
-        void Alterar (T entidade);
-        void Deletar (Guid id);
+        void Cadastrar(T entidade);
+        void Alterar(T entidade);
+        void Deletar(Guid id);
     }
 }

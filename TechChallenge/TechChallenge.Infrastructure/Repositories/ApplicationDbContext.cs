@@ -8,6 +8,10 @@ namespace TechChallenge.Infrastructure.Repositories
     {
         private readonly IConfiguration _configuration;
 
+        public ApplicationDbContext()
+        {
+        }
+
         public ApplicationDbContext(IConfiguration configuration)
         {
             _configuration = configuration;

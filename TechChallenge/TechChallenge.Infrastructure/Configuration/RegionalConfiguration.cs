@@ -9,12 +9,12 @@ namespace TechChallenge.Infrastructure.Configuration
         public void Configure(EntityTypeBuilder<Regional> builder)
         {
             builder.HasKey(p => p.Id);
-            builder.Property(e => e.Id).HasColumnType("UUID");
-            builder.Property(e => e.CriadoEm).HasColumnType("DATETIME").IsRequired();
-            builder.Property(e => e.AlteradoEm).HasColumnType("DATETIME");
-            builder.Property(e => e.Ddd).HasColumnType("INT").IsRequired();
-            builder.Property(e => e.Estado).HasColumnType("VARCHAR(2)").HasMaxLength(2).IsRequired();
-            builder.Property(e => e.Nome).HasColumnType("VARCHAR(100)").HasMaxLength(100).IsRequired();
+            builder.Property(e => e.Id);
+            builder.Property(e => e.CriadoEm).HasColumnType("timestamp without time zone").IsRequired();
+            builder.Property(e => e.AlteradoEm).HasColumnType("timestamp without time zone");
+            builder.Property(e => e.Ddd).IsRequired();
+            builder.Property(e => e.Estado).HasMaxLength(2).IsRequired();
+            builder.Property(e => e.Nome).HasMaxLength(100).IsRequired();
         }
     }
 }
