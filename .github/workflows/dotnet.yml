@@ -23,6 +23,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore ./TechChallenge/TechChallenge.Api/TechChallenge.Api.csproj
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore ./TechChallenge/TechChallenge.Api/TechChallenge.Api.csproj
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal ./TechChallenge/TechChallenge.Api/TechChallenge.Api.csproj
