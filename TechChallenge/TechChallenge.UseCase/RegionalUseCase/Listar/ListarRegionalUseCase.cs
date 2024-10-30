@@ -1,6 +1,7 @@
 ﻿using TechChallenge.Domain.Interfaces;
 using TechChallenge.Domain.RegionalAggregate;
 using TechChallenge.UseCase.Interfaces;
+using TechChallenge.UseCase.Shared;
 
 namespace TechChallenge.UseCase.RegionalUseCase.Listar
 {

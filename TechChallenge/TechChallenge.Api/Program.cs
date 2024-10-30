@@ -2,6 +2,10 @@ using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using TechChallenge.Domain.Interfaces;
 using TechChallenge.Infrastructure.Repositories;
+using TechChallenge.UseCase.ContatoUseCase.Adicionar;
+using TechChallenge.UseCase.ContatoUseCase.Alterar;
+using TechChallenge.UseCase.ContatoUseCase.Listar;
+using TechChallenge.UseCase.ContatoUseCase.Obter;
 using TechChallenge.UseCase.Interfaces;
 using TechChallenge.UseCase.RegionalUseCase.Adicionar;
 using TechChallenge.UseCase.RegionalUseCase.Alterar;
@@ -23,10 +27,10 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 }, ServiceLifetime.Scoped);
 
 builder.Services.AddScoped<IRegionalRepository, RegionalRepository>();
+builder.Services.AddScoped<IContatoRepository, ContatoRepository>();
 
 builder.Services.AddScoped<IAdicionarRegionalUseCase, AdicionarRegionalUseCase>();
 builder.Services.AddScoped<IValidator<AdicionarRegionalDto>, AdicionarRegionalValidator>();
-
 
 builder.Services.AddScoped<IAlterarRegionalUseCase, AlterarRegionalUseCase>();
 builder.Services.AddScoped<IValidator<AlterarRegionalDto>, AlterarRegionalValidator>();
@@ -36,6 +40,17 @@ builder.Services.AddScoped<IValidator<ObterRegionalDto>, ObterRegionalValidator>
 
 builder.Services.AddScoped<IListarRegionalUseCase, ListarRegionalUseCase>();
 
+
+builder.Services.AddScoped<IAdicionarContatoUseCase, AdicionarContatoUseCase>();
+builder.Services.AddScoped<IValidator<AdicionarContatoDto>, AdicionarContatoValidator>();
+
+builder.Services.AddScoped<IAlterarContatoUseCase, AlterarContatoUseCase>();
+builder.Services.AddScoped<IValidator<AlterarContatoDto>, AlterarContatoValidator>();
+
+builder.Services.AddScoped<IObterContatoUseCase, ObterContatoUseCase>();
+builder.Services.AddScoped<IValidator<ObterContatoDto>, ObterContatoValidator>();
+
+builder.Services.AddScoped<IListarContatoUseCase, ListarContatosUseCase>();
 
 var app = builder.Build();
 

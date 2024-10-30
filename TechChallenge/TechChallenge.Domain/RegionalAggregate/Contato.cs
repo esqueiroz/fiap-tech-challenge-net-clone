@@ -19,7 +19,7 @@ namespace TechChallenge.Domain.RegionalAggregate
             RegionalId = regionalId;
         }
 
-        public Contato Criar(string nome, string telefone, string email, Guid regionalId)
+        public static Contato Criar(string nome, string telefone, string email, Guid regionalId)
         {
             if (String.IsNullOrWhiteSpace(nome))
                 throw new ArgumentException("Nome da Regional inválido");
@@ -28,21 +28,31 @@ namespace TechChallenge.Domain.RegionalAggregate
             if (String.IsNullOrWhiteSpace(telefone) || !ValidarTelefone(telefone))
                 throw new ArgumentException("Telefone inválido");
 
-            if (String.IsNullOrWhiteSpace(email) || !ValidarEmail(email) || Email.Length > 150)
+            if (String.IsNullOrWhiteSpace(email) || !ValidarEmail(email) || email.Length > 150)
                 throw new ArgumentException("E-mail inválido");
 
 
             return new Contato(nome, telefone, email, regionalId);
         }
 
-        private bool ValidarEmail(string email)
+        public Contato Alterar(string nome, string telefone, string email, Guid regionalId)
         {
-            return Regex.IsMatch(email, "/^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?$/i");
+            Nome = nome;
+            Telefone = telefone;
+            Email = email;
+            RegionalId = regionalId;
+
+            return this;
         }
 
-        private bool ValidarTelefone(string telefone)
+        private static bool ValidarEmail(string email)
         {
-            return Regex.IsMatch(telefone, "^\\([1-9]{2}\\) (?:[2-8]|9[0-9])[0-9]{3}\\-[0-9]{4}$");
+            return Regex.IsMatch(email, "^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?");            
+        }
+
+        private static bool ValidarTelefone(string telefone)
+        {
+            return Regex.IsMatch(telefone, "^(?:[2-8]|9[0-9])[0-9]{3}\\-[0-9]{4}$");
         }
     }
 }

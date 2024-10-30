@@ -32,7 +32,6 @@ namespace TechChallenge.UseCase.RegionalUseCase.Alterar
             regional.Alterar(alterarRegionalDto.Ddd, alterarRegionalDto.Estado, alterarRegionalDto.Nome);
 
             _regionalRepository.Alterar(regional);
-
         }
     }
 }

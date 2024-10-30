@@ -7,8 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ContatoUseCase\Adicionar\" />
-    <Folder Include="ContatoUseCase\Alterar\" />
     <Folder Include="ContatoUseCase\Remover\" />
     <Folder Include="RegionalUseCase\Listar\Validators_\" />
   </ItemGroup>

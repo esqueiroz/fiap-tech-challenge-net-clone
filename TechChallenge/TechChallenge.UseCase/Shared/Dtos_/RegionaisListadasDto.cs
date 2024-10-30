@@ -1,4 +1,4 @@
-﻿namespace TechChallenge.UseCase.RegionalUseCase.Listar
+﻿namespace TechChallenge.UseCase.Shared
 {
     public class RegionaisListadasDto
     {

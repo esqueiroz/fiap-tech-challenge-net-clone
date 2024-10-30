@@ -1,4 +1,4 @@
-﻿using TechChallenge.UseCase.RegionalUseCase.Listar;
+﻿using TechChallenge.UseCase.Shared;
 
 namespace TechChallenge.UseCase.Interfaces
 {

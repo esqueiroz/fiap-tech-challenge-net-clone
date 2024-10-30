@@ -1,8 +1,8 @@
-﻿using TechChallenge.Domain.RegionalAggregate;
+﻿using TechChallenge.UseCase.ContatoUseCase.Listar;
 
 namespace TechChallenge.UseCase.Interfaces
 {
-    internal interface IListarContatoUseCase : IListarUseCase<Contato>
+    public interface IListarContatoUseCase : IListarUseCase<ContatosListadosDto>
     {
     }
 }

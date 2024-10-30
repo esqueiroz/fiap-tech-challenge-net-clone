@@ -16,9 +16,8 @@ namespace TechChallenge.Infrastructure.Configuration
             builder.Property(e => e.Telefone).HasMaxLength(9).IsRequired();
             builder.Property(e => e.Email).HasMaxLength(150).IsRequired();
 
-            /*builder.HasOne(c => c.Regional)
-                .WithMany(r => r.Contatos)
-                .HasPrincipalKey(r => r.Id);*/
+            builder.Navigation(e => e.Regional).AutoInclude();         
+                
         }
     }
 }

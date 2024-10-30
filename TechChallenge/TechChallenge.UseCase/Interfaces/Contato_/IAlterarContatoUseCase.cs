@@ -1,8 +1,8 @@
-﻿using TechChallenge.Domain.RegionalAggregate;
+﻿using TechChallenge.UseCase.ContatoUseCase.Alterar;
 
 namespace TechChallenge.UseCase.Interfaces
 {
-    internal interface IAlterarContatoUseCase : IAlterarUseCase<Contato>
+    public interface IAlterarContatoUseCase : IAlterarUseCase<AlterarContatoDto>
     {
     }
 }
