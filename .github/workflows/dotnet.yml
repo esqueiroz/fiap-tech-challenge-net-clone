@@ -25,4 +25,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore ./TechChallenge/TechChallenge.Api/TechChallenge.Api.csproj
     - name: Test
-      run: dotnet test --no-build --verbosity normal ./TechChallenge/TechChallenge.Api/TechChallenge.Api.csproj
+      run: dotnet test --no-build --verbosity normal ./TechChallenge/TechChallenge.UnitTest/TechChallenge.UnitTest.csproj
