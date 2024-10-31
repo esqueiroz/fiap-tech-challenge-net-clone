@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using TechChallenge.Domain.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
 using TechChallenge.UseCase.ContatoUseCase.Adicionar;
 using TechChallenge.UseCase.ContatoUseCase.Alterar;
-using TechChallenge.UseCase.ContatoUseCase.Obter;
 using TechChallenge.UseCase.Interfaces;
 
 namespace TechChallenge.Api.Controllers
@@ -16,28 +13,28 @@ namespace TechChallenge.Api.Controllers
         private readonly IAlterarContatoUseCase _alterarContatoUseCase;
         private readonly IObterContatoUseCase _obterContatoUseCase;
         private readonly IListarContatoUseCase _listarContatoUseCase;
+        private readonly IRemoverContatoUseCase _removerContatoUseCase;
 
-        public ContatoController(IAdicionarContatoUseCase adicionarContatoUseCase, 
-            IAlterarContatoUseCase alterarContatoUseCase, 
+        public ContatoController(IAdicionarContatoUseCase adicionarContatoUseCase,
+            IAlterarContatoUseCase alterarContatoUseCase,
             IObterContatoUseCase obterContatoUseCase,
-            IListarContatoUseCase listarContatoUseCase)
+            IListarContatoUseCase listarContatoUseCase,
+            IRemoverContatoUseCase removerContatoUseCase)
         {
             _adicionarContatoUseCase = adicionarContatoUseCase;
             _alterarContatoUseCase = alterarContatoUseCase;
             _obterContatoUseCase = obterContatoUseCase;
-            _listarContatoUseCase= listarContatoUseCase;
+            _listarContatoUseCase = listarContatoUseCase;
+            _removerContatoUseCase = removerContatoUseCase;
         }
 
         [HttpGet]
         [Route("{id:guid}")]
-        public IActionResult Get([FromRoute] Guid id)
+        public IActionResult Obter([FromRoute] Guid id)
         {
             try
             {
-                return Ok(_obterContatoUseCase.ObterPorId(new ObterContatoDto
-                {
-                    Id = id
-                }));               
+                return Ok(_obterContatoUseCase.ObterPorId(id));
             }
             catch (Exception e)
             {
@@ -58,21 +55,21 @@ namespace TechChallenge.Api.Controllers
             }
         }
 
-        [HttpPost]        
-        public IActionResult Post(AdicionarContatoDto adicionarContatoDto)
+        [HttpPost]
+        public IActionResult Adicionar(AdicionarContatoDto adicionarContatoDto)
         {
             try
             {
                 return Ok(_adicionarContatoUseCase.Adicionar(adicionarContatoDto));
             }
-            catch (Exception e )
+            catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
         }
 
         [HttpPut]
-        public IActionResult Put(AlterarContatoDto alterarContatoDto)
+        public IActionResult Alterar(AlterarContatoDto alterarContatoDto)
         {
             try
             {
@@ -81,7 +78,23 @@ namespace TechChallenge.Api.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);                
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete]
+        [Route("{id:Guid}")]
+        public IActionResult Remover(Guid id)
+        {
+            try
+            {
+                _removerContatoUseCase.Remover(id);
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
             }
         }
     }

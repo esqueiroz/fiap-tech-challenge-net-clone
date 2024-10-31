@@ -1,8 +1,8 @@
-﻿using TechChallenge.UseCase.RegionalUseCase.Obter;
+﻿using TechChallenge.UseCase.Shared;
 
 namespace TechChallenge.UseCase.Interfaces
 {
-    public interface IObterRegionalUseCase : IObterUseCase<ObterRegionalDto, RegionalObtidaDto>
+    public interface IObterRegionalUseCase : IObterUseCase<Guid, RegionalDto>
     {
     }
 }

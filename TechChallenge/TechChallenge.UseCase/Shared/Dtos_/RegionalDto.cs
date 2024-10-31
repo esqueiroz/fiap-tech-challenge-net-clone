@@ -1,10 +1,10 @@
 ﻿namespace TechChallenge.UseCase.Shared
 {
-    public class RegionaisListadasDto
+    public class RegionalDto
     {
         public Guid Id { get; set; }
         public int Ddd { get; set; }
-        public string Estado { get; set; }
-        public string Nome { get; set; }
+        public required string Estado { get; set; }
+        public required string Nome { get; set; }
     }
 }

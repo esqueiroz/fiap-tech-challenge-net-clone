@@ -1,36 +1,30 @@
-﻿using FluentValidation;
-using TechChallenge.Domain.Interfaces;
+﻿using TechChallenge.Domain.Interfaces;
 using TechChallenge.UseCase.Interfaces;
+using TechChallenge.UseCase.Shared;
 
 namespace TechChallenge.UseCase.RegionalUseCase.Obter
 {
     public class ObterRegionalUseCase : IObterRegionalUseCase
     {
         private readonly IRegionalRepository _regionalRepository;
-        private readonly IValidator<ObterRegionalDto> _validator;
 
-        public ObterRegionalUseCase(IRegionalRepository regionalRepository, IValidator<ObterRegionalDto> validator)
+        public ObterRegionalUseCase(IRegionalRepository regionalRepository)
         {
             _regionalRepository = regionalRepository;
-            _validator = validator;
         }
 
-        public RegionalObtidaDto ObterPorId(ObterRegionalDto obterRegionalDto)
+        public RegionalDto ObterPorId(Guid id)
         {
-            if (!_validator.Validate(obterRegionalDto).IsValid)
-            {
-                throw new Exception("Falha ao recuperar Regional por ID");
-            }
-
-            var regional = _regionalRepository.ObterPorId(obterRegionalDto.Id);
+            var regional = _regionalRepository.ObterPorId(id);
 
             if (regional is null)
             {
                 throw new Exception("Regional não encontrada");
             }
 
-            return new RegionalObtidaDto
+            return new RegionalDto
             {
+                Id = regional.Id,
                 Ddd = regional.Ddd,
                 Estado = regional.Estado,
                 Nome = regional.Nome

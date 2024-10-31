@@ -9,5 +9,10 @@ namespace TechChallenge.Infrastructure.Repositories
         {
 
         }
+
+        public Regional ObterPorDdd(int ddd)
+        {
+            return _dbSet.FirstOrDefault(x => x.Ddd == ddd);
+        }
     }
 }

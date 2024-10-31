@@ -2,7 +2,7 @@
 
 namespace TechChallenge.UseCase.Interfaces
 {
-    public interface IObterContatoUseCase : IObterUseCase<ObterContatoDto, ContatoObtidoDto>
+    public interface IObterContatoUseCase : IObterUseCase<Guid, ContatoObtidoDto>
     {
     }
 }

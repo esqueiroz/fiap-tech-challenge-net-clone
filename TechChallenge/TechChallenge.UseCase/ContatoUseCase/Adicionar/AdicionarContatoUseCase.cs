@@ -18,14 +18,21 @@ namespace TechChallenge.UseCase.ContatoUseCase.Adicionar
 
         public ContatoAdicionadoDto Adicionar(AdicionarContatoDto adicionarContatoDto)
         {
-            if (!_validator.Validate(adicionarContatoDto).IsValid)
+            var validacao = _validator.Validate(adicionarContatoDto);
+            if (!validacao.IsValid)
             {
-                throw new Exception("Falha ao adicionar Contato");
+                string mensagemValidacao = string.Empty;
+                foreach (var item in validacao.Errors)
+                {
+                    mensagemValidacao = string.Concat(mensagemValidacao, item.ErrorMessage, "/n");
+                }
+
+                throw new Exception(mensagemValidacao);
             }
 
             var contato = Contato.Criar(adicionarContatoDto.Nome, adicionarContatoDto.Telefone, adicionarContatoDto.Email, adicionarContatoDto.RegionalId);
 
-            _contatoRepository.Cadastrar(contato);
+            _contatoRepository.Adicionar(contato);
 
             return new ContatoAdicionadoDto
             {

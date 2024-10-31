@@ -2,10 +2,10 @@
 {
     public interface IRepository<T> where T : EntityBase
     {
-        IList<T> ObterTodos();
+        IList<T> Listar();
         T ObterPorId(Guid id);
-        void Cadastrar(T entidade);
+        void Adicionar(T entidade);
         void Alterar(T entidade);
-        void Deletar(Guid id);
+        void Remover(T entidade);
     }
 }

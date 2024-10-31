@@ -6,9 +6,6 @@
         public string Estado { get; set; }
         public string Nome { get; set; }
 
-
-        //        public ICollection<Contato>? Contatos { get; set; }
-
         protected Regional(int ddd, string estado, string nome)
         {
             Ddd = ddd;

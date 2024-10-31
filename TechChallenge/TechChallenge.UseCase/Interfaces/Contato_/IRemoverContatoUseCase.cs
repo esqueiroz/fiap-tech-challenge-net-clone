@@ -1,8 +1,6 @@
-﻿using TechChallenge.Domain.RegionalAggregate;
-
-namespace TechChallenge.UseCase.Interfaces
+﻿namespace TechChallenge.UseCase.Interfaces
 {
-    public interface IRemoverContatoUseCase : IRemoverUseCase<Contato>
+    public interface IRemoverContatoUseCase : IRemoverUseCase<Guid>
     {
     }
 }

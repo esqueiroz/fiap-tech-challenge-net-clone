@@ -1,8 +1,6 @@
-﻿using TechChallenge.UseCase.RegionalUseCase.Remover;
-
-namespace TechChallenge.UseCase.Interfaces
+﻿namespace TechChallenge.UseCase.Interfaces
 {
-    public interface IRemoverRegionalUseCase : IRemoverUseCase<RemoverRegionalDto>
+    public interface IRemoverRegionalUseCase : IRemoverUseCase<Guid>
     {
     }
 }

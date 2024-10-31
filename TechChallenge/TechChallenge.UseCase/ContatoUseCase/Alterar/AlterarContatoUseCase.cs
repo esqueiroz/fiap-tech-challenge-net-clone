@@ -1,6 +1,5 @@
 ﻿using FluentValidation;
 using TechChallenge.Domain.Interfaces;
-using TechChallenge.UseCase.ContatoUseCase.Adicionar;
 using TechChallenge.UseCase.Interfaces;
 
 namespace TechChallenge.UseCase.ContatoUseCase.Alterar
@@ -18,14 +17,21 @@ namespace TechChallenge.UseCase.ContatoUseCase.Alterar
 
         public void Alterar(AlterarContatoDto alterarContatoDto)
         {
-            if (!_validator.Validate(alterarContatoDto).IsValid)
+            var validacao = _validator.Validate(alterarContatoDto);
+            if (!validacao.IsValid)
             {
-                throw new Exception("Falha ao alterar Contato");
+                string mensagemValidacao = string.Empty;
+                foreach (var item in validacao.Errors)
+                {
+                    mensagemValidacao = string.Concat(mensagemValidacao, item.ErrorMessage, "/n");
+                }
+
+                throw new Exception(mensagemValidacao);
             }
 
             var contato = _contatoRepository.ObterPorId(alterarContatoDto.Id);
 
-            if (contato == null)
+            if (contato is null)
             {
                 throw new Exception("Contato não encontrado");
             }

@@ -15,7 +15,7 @@ namespace TechChallenge.UseCase.ContatoUseCase.Listar
 
         public IList<ContatosListadosDto> Listar()
         {
-            return _contatoRepository.ObterTodos().Select(x => Mapper(x)).ToList();
+            return _contatoRepository.Listar().Select(x => Mapper(x)).ToList();
         }
 
         private ContatosListadosDto Mapper(Contato contato)
@@ -25,8 +25,8 @@ namespace TechChallenge.UseCase.ContatoUseCase.Listar
                 Id = contato.Id,
                 Nome = contato.Nome,
                 Telefone = contato.Telefone,
-                Email = contato.Email,                
-                Regional = new Shared.RegionaisListadasDto
+                Email = contato.Email,
+                Regional = new Shared.RegionalDto
                 {
                     Id = contato.Regional.Id,
                     Ddd = contato.Regional.Ddd,

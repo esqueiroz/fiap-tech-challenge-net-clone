@@ -1,14 +1,13 @@
-﻿using TechChallenge.Domain.RegionalAggregate;
-using TechChallenge.UseCase.Shared;
+﻿using TechChallenge.UseCase.Shared;
 
 namespace TechChallenge.UseCase.ContatoUseCase.Obter
 {
     public class ContatoObtidoDto
     {
-        public string Nome { get; set; }
-        public string Telefone { get; set; }
-        public string Email { get; set; }
-        public RegionaisListadasDto Regional {  get; set; }
-        
+        public required string Nome { get; set; }
+        public required string Telefone { get; set; }
+        public required string Email { get; set; }
+        public required RegionalDto Regional { get; set; }
+
     }
 }

@@ -1,5 +1,4 @@
-﻿using FluentValidation;
-using TechChallenge.Domain.Interfaces;
+﻿using TechChallenge.Domain.Interfaces;
 using TechChallenge.UseCase.Interfaces;
 
 namespace TechChallenge.UseCase.RegionalUseCase.Remover
@@ -7,22 +6,31 @@ namespace TechChallenge.UseCase.RegionalUseCase.Remover
     public class RemoverRegionalUseCase : IRemoverRegionalUseCase
     {
         private readonly IRegionalRepository _regionalRepository;
-        private readonly IValidator<RemoverRegionalDto> _validator;
+        private readonly IContatoRepository _contatoRepository;
 
-        public RemoverRegionalUseCase(IRegionalRepository regionalRepository, IValidator<RemoverRegionalDto> validator)
+        public RemoverRegionalUseCase(IRegionalRepository regionalRepository, IContatoRepository contatoRepository)
         {
             _regionalRepository = regionalRepository;
-            _validator = validator;
+            _contatoRepository = contatoRepository;
         }
 
-        public void Remover(RemoverRegionalDto removerRegionalDto)
+        public void Remover(Guid id)
         {
-            if (!_validator.Validate(removerRegionalDto).IsValid)
+            var regional = _regionalRepository.ObterPorId(id);
+
+            if (regional is null)
             {
-                throw new Exception("Falha ao adicionar Regional");
+                throw new Exception("Regional não encontrada");
             }
 
+            var contatos = _contatoRepository.ListarPorRegional(regional.Id);
 
+            if (contatos is not null && contatos.Count > 0)
+            {
+                throw new Exception("Regional possui contatos vinculados");
+            }
+
+            _regionalRepository.Remover(regional);
         }
     }
 }

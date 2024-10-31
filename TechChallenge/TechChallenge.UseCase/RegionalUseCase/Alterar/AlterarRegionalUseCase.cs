@@ -17,9 +17,16 @@ namespace TechChallenge.UseCase.RegionalUseCase.Alterar
 
         public void Alterar(AlterarRegionalDto alterarRegionalDto)
         {
-            if (!_validator.Validate(alterarRegionalDto).IsValid)
+            var validacao = _validator.Validate(alterarRegionalDto);
+            if (!validacao.IsValid)
             {
-                throw new Exception("Falha ao alterar Regional");
+                string mensagemValidacao = string.Empty;
+                foreach (var item in validacao.Errors)
+                {
+                    mensagemValidacao = string.Concat(mensagemValidacao, item.ErrorMessage, "/n");
+                }
+
+                throw new Exception(mensagemValidacao);
             }
 
             var regional = _regionalRepository.ObterPorId(alterarRegionalDto.Id);

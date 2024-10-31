@@ -23,15 +23,15 @@ namespace TechChallenge.Infrastructure.Repositories
             _context.SaveChanges();
         }
 
-        public void Cadastrar(T entidade)
+        public void Adicionar(T entidade)
         {
             _dbSet.Add(entidade);
             _context.SaveChanges();
         }
 
-        public void Deletar(Guid id)
+        public void Remover(T entidade)
         {
-            _dbSet.Remove(ObterPorId(id));
+            _dbSet.Remove(entidade);
             _context.SaveChanges();
         }
 
@@ -40,7 +40,7 @@ namespace TechChallenge.Infrastructure.Repositories
             return _dbSet.FirstOrDefault(x => x.Id == id);
         }
 
-        public IList<T> ObterTodos()
+        public IList<T> Listar()
         {
             return _dbSet.ToList();
         }

@@ -3,8 +3,8 @@
     public class AdicionarRegionalDto
     {
         public int Ddd { get; set; }
-        public string Estado { get; set; }
-        public string Nome { get; set; }
+        public required string Estado { get; set; }
+        public required string Nome { get; set; }
 
     }
 }

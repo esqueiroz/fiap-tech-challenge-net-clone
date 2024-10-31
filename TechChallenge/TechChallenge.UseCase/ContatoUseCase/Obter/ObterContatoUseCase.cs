@@ -1,5 +1,4 @@
-﻿using FluentValidation;
-using TechChallenge.Domain.Interfaces;
+﻿using TechChallenge.Domain.Interfaces;
 using TechChallenge.UseCase.Interfaces;
 
 namespace TechChallenge.UseCase.ContatoUseCase.Obter
@@ -7,24 +6,17 @@ namespace TechChallenge.UseCase.ContatoUseCase.Obter
     public class ObterContatoUseCase : IObterContatoUseCase
     {
         private readonly IContatoRepository _contatoRepository;
-        private readonly IValidator<ObterContatoDto> _validator;
 
-        public ObterContatoUseCase(IContatoRepository contatoRepository, IValidator<ObterContatoDto> obterContatoValidator)
+        public ObterContatoUseCase(IContatoRepository contatoRepository)
         {
             _contatoRepository = contatoRepository;
-            _validator = obterContatoValidator;
         }
 
-        public ContatoObtidoDto ObterPorId(ObterContatoDto obterContatoDto)
+        public ContatoObtidoDto ObterPorId(Guid id)
         {
-            if (!_validator.Validate(obterContatoDto).IsValid)
-            {
-                throw new Exception("Falha ao obter Contato");
-            };
+            var contato = _contatoRepository.ObterPorId(id);
 
-            var contato = _contatoRepository.ObterPorId(obterContatoDto.Id);
-
-            if (contato == null)
+            if (contato is null)
             {
                 throw new Exception("Contato não encontrado");
             }
@@ -34,7 +26,7 @@ namespace TechChallenge.UseCase.ContatoUseCase.Obter
                 Nome = contato.Nome,
                 Telefone = contato.Telefone,
                 Email = contato.Email,
-                Regional = new Shared.RegionaisListadasDto
+                Regional = new Shared.RegionalDto
                 {
                     Id = contato.Regional.Id,
                     Ddd = contato.Regional.Ddd,

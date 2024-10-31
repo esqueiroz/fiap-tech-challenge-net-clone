@@ -22,7 +22,7 @@ namespace TechChallenge.Domain.RegionalAggregate
         public static Contato Criar(string nome, string telefone, string email, Guid regionalId)
         {
             if (String.IsNullOrWhiteSpace(nome))
-                throw new ArgumentException("Nome da Regional inválido");
+                throw new ArgumentException("Nome do Contato inválido");
 
 
             if (String.IsNullOrWhiteSpace(telefone) || !ValidarTelefone(telefone))
@@ -47,7 +47,7 @@ namespace TechChallenge.Domain.RegionalAggregate
 
         private static bool ValidarEmail(string email)
         {
-            return Regex.IsMatch(email, "^[a-z0-9.]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?");            
+            return Regex.IsMatch(email, "^[a-zA-Z0-9][-\\._a-zA-Z0-9]+@[a-z0-9]+\\.[a-z]+(\\.[a-z]+)?");
         }
 
         private static bool ValidarTelefone(string telefone)

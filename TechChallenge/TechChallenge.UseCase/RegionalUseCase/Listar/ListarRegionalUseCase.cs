@@ -7,26 +7,77 @@ namespace TechChallenge.UseCase.RegionalUseCase.Listar
 {
     public class ListarRegionalUseCase : IListarRegionalUseCase
     {
-        private readonly IRegionalRepository _repository;
+        private readonly IRegionalRepository _regionalRepository;
+        private readonly IContatoRepository _contatoRepository;
 
-        public ListarRegionalUseCase(IRegionalRepository repository)
+        public ListarRegionalUseCase(IRegionalRepository repository, IContatoRepository contatoRepository)
         {
-            _repository = repository;
+            _regionalRepository = repository;
+            _contatoRepository = contatoRepository;
         }
 
-        public IList<RegionaisListadasDto> Listar()
+        public IList<RegionalDto> Listar()
         {
-            return _repository.ObterTodos().Select(x => Mapper(x)).ToList();
+            return _regionalRepository.Listar().Select(x => Mapper(x)).ToList();
         }
 
-        private RegionaisListadasDto Mapper(Regional regional)
+        public IList<ContatosPorRegionalDto> ListarContatosPorRegionalId(Guid id)
         {
-            return new RegionaisListadasDto
+            var regional = _regionalRepository.ObterPorId(id);
+
+            if (regional is null)
+            {
+                throw new Exception("Regional não encontrada");
+            }
+
+            var contatos = _contatoRepository.ListarPorRegional(regional.Id);
+
+            if (contatos.Count == 0)
+            {
+                throw new Exception("Regional não possui contatos vinculados");
+            }
+
+            return _contatoRepository.ListarPorRegional(regional.Id).Select(x => Mapper(x)).ToList();
+        }
+
+        public IList<ContatosPorRegionalDto> ListarContatosPorDdd(int ddd)
+        {
+            var regional = _regionalRepository.ObterPorDdd(ddd);
+
+            if (regional is null)
+            {
+                throw new Exception("Regional não encontrada");
+            }
+
+            var contatos = _contatoRepository.ListarPorRegional(regional.Id);
+
+            if (contatos.Count == 0)
+            {
+                throw new Exception("Regional não possui contatos vinculados");
+            }
+
+            return _contatoRepository.ListarPorRegional(regional.Id).Select(x => Mapper(x)).ToList();
+        }
+
+        private RegionalDto Mapper(Regional regional)
+        {
+            return new RegionalDto
             {
                 Id = regional.Id,
                 Ddd = regional.Ddd,
                 Estado = regional.Estado,
                 Nome = regional.Nome
+            };
+        }
+
+        private ContatosPorRegionalDto Mapper(Contato regional)
+        {
+            return new ContatosPorRegionalDto
+            {
+                Id = regional.Id,
+                Nome = regional.Nome,
+                Telefone = regional.Telefone,
+                Email = regional.Email
             };
         }
     }

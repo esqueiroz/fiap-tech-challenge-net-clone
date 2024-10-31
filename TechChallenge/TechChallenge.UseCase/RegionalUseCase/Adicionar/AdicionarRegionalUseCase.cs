@@ -18,14 +18,21 @@ namespace TechChallenge.UseCase.RegionalUseCase.Adicionar
 
         public RegionalAdicionadaDto Adicionar(AdicionarRegionalDto adicionarRegionalDto)
         {
-            if (!_validator.Validate(adicionarRegionalDto).IsValid)
+            var validacao = _validator.Validate(adicionarRegionalDto);
+            if (!validacao.IsValid)
             {
-                throw new Exception("Falha ao adicionar Regional");
+                string mensagemValidacao = string.Empty;
+                foreach (var item in validacao.Errors)
+                {
+                    mensagemValidacao = string.Concat(mensagemValidacao, item.ErrorMessage, "/n");
+                }
+
+                throw new Exception(mensagemValidacao);
             }
 
             var regional = Regional.Criar(adicionarRegionalDto.Ddd, adicionarRegionalDto.Estado, adicionarRegionalDto.Nome);
 
-            _regionalRepository.Cadastrar(regional);
+            _regionalRepository.Adicionar(regional);
 
             return new RegionalAdicionadaDto
             {

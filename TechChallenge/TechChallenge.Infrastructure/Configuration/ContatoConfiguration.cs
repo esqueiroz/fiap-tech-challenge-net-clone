@@ -13,11 +13,11 @@ namespace TechChallenge.Infrastructure.Configuration
             builder.Property(e => e.CriadoEm).HasColumnType("timestamp without time zone").IsRequired();
             builder.Property(e => e.AlteradoEm).HasColumnType("timestamp without time zone");
             builder.Property(e => e.Nome).HasMaxLength(100).IsRequired();
-            builder.Property(e => e.Telefone).HasMaxLength(9).IsRequired();
+            builder.Property(e => e.Telefone).HasMaxLength(10).IsRequired();
             builder.Property(e => e.Email).HasMaxLength(150).IsRequired();
 
-            builder.Navigation(e => e.Regional).AutoInclude();         
-                
+            builder.Navigation(e => e.Regional).AutoInclude();
+
         }
     }
 }
