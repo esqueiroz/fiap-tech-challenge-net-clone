@@ -1,3 +1,5 @@
+[![.NET](https://github.com/WGMartins/fiap-tech-challenge-net/actions/workflows/dotnet.yml/badge.svg)](https://github.com/WGMartins/fiap-tech-challenge-net/actions/workflows/dotnet.yml)
+
 # FIAP Tech Challenge
 
 ## Tema
