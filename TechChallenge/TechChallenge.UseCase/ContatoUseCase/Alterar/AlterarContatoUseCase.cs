@@ -23,10 +23,10 @@ namespace TechChallenge.UseCase.ContatoUseCase.Alterar
                 string mensagemValidacao = string.Empty;
                 foreach (var item in validacao.Errors)
                 {
-                    mensagemValidacao = string.Concat(mensagemValidacao, item.ErrorMessage, "/n");
+                    mensagemValidacao = string.Concat(mensagemValidacao, item.ErrorMessage, ", ");
                 }
 
-                throw new Exception(mensagemValidacao);
+                throw new Exception(mensagemValidacao.Remove(mensagemValidacao.Length-2));
             }
 
             var contato = _contatoRepository.ObterPorId(alterarContatoDto.Id);

@@ -19,6 +19,15 @@ namespace TechChallenge.Domain.RegionalAggregate
             RegionalId = regionalId;
         }
 
+        public Contato(Guid id, string nome, string telefone, string email, Guid regionalId)
+        {
+            Id = id;
+            Nome = nome;
+            Telefone = telefone;
+            Email = email;
+            RegionalId = regionalId;
+        }
+
         public static Contato Criar(string nome, string telefone, string email, Guid regionalId)
         {
             if (String.IsNullOrWhiteSpace(nome))
@@ -33,7 +42,7 @@ namespace TechChallenge.Domain.RegionalAggregate
 
 
             return new Contato(nome, telefone, email, regionalId);
-        }
+        }       
 
         public Contato Alterar(string nome, string telefone, string email, Guid regionalId)
         {

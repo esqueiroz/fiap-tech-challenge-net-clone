@@ -13,7 +13,7 @@ namespace TechChallenge.UseCase.RegionalUseCase.Obter
             _regionalRepository = regionalRepository;
         }
 
-        public RegionalDto ObterPorId(Guid id)
+        public RegionalObtidaDto ObterPorId(Guid id)
         {
             var regional = _regionalRepository.ObterPorId(id);
 
@@ -22,9 +22,8 @@ namespace TechChallenge.UseCase.RegionalUseCase.Obter
                 throw new Exception("Regional não encontrada");
             }
 
-            return new RegionalDto
-            {
-                Id = regional.Id,
+            return new RegionalObtidaDto
+            {                
                 Ddd = regional.Ddd,
                 Estado = regional.Estado,
                 Nome = regional.Nome

@@ -15,7 +15,7 @@
 
         public static Regional Criar(int ddd, string estado, string nome)
         {
-            if (ddd <= 0 && ddd > 99)
+            if (ddd <= 0 || ddd > 99)
                 throw new ArgumentException("DDD inválido");
 
             if (String.IsNullOrWhiteSpace(estado) || estado.Length > 2)
