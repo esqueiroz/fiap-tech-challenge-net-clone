@@ -6,8 +6,18 @@
         public string Estado { get; set; }
         public string Nome { get; set; }
 
+        public Regional()
+        {
+        }
         protected Regional(int ddd, string estado, string nome)
         {
+            Ddd = ddd;
+            Estado = estado;
+            Nome = nome;
+        }
+        public Regional(Guid id, int ddd, string estado, string nome)
+        {
+            Id = id;
             Ddd = ddd;
             Estado = estado;
             Nome = nome;

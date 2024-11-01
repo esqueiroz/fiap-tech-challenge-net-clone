@@ -1,9 +1,7 @@
-﻿using Bogus.DataSets;
-using FluentValidation;
+﻿using FluentValidation;
 using Moq;
 using TechChallenge.Domain.Interfaces;
 using TechChallenge.Domain.RegionalAggregate;
-using TechChallenge.UnitTest.UseCase.ContatoUseCase.Shared;
 using TechChallenge.UseCase.ContatoUseCase.Alterar;
 using TechChallenge.UseCase.Interfaces;
 
@@ -11,8 +9,7 @@ namespace TechChallenge.UnitTest.UseCase.ContatoUseCase.Alterar
 {
     public class AlterarContatoUseCaseTest
     {
-        private readonly AlterarContatoDtoBuilder _builder;
-        private readonly ContatoBuilder _contatobuilder;
+        private readonly AlterarContatoDtoBuilder _builder;        
         private readonly Mock<IContatoRepository> _contatoRepository;
         private readonly IValidator<AlterarContatoDto> _validator;
         private readonly IAlterarContatoUseCase _alterarContatoUseCase;
@@ -22,9 +19,7 @@ namespace TechChallenge.UnitTest.UseCase.ContatoUseCase.Alterar
             _validator = new AlterarContatoValidator();
             _contatoRepository = new Mock<IContatoRepository>();
             _builder = new AlterarContatoDtoBuilder();
-
             _alterarContatoUseCase = new AlterarContatoUseCase(_contatoRepository.Object, _validator);
-
         }
 
         [Fact]

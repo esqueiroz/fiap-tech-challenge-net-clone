@@ -11,14 +11,14 @@ namespace TechChallenge.UseCase.RegionalUseCase.Adicionar
                 .WithMessage("DDD deve pertencer ao intervalo [1-99]"); 
 
             RuleFor(x => x.Estado)
-                .NotNull()
-                .WithMessage("Não pode ser nulo")
+                .NotEmpty()
+                .WithMessage("Estado não pode ser nulo ou vazio")
                 .MaximumLength(2)
                 .WithMessage("Foi atingido o número máximo de caracteres (2)");
 
             RuleFor(x => x.Nome)
-                .NotNull()
-                .WithMessage("Não pode ser nulo")
+                .NotEmpty()
+                .WithMessage("Nome não pode ser nulo ou vazio")
                 .MaximumLength(100)
                 .WithMessage("Foi atingido o número máximo de caracteres (100)");
         }

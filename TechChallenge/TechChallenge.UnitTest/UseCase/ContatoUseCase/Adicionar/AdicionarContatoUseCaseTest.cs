@@ -28,19 +28,14 @@ namespace TechChallenge.UnitTest.UseCase.ContatoUseCase.Adicionar
         public void AdicionarContatoUseCase_Adicionar_Sucesso()
         {
             // Arrange
-
             var adicionarContatoDto = _builder.Default().Build();            
-
             _contatoRepository.Setup(s => s.Adicionar(It.IsAny<Contato>()));
 
             // Act
-
             var result = _adicionarContatoUseCase.Adicionar(adicionarContatoDto);
 
             // Assert
-
             Assert.True(result.Id != default);
-
         }
 
         [Theory]
@@ -50,19 +45,13 @@ namespace TechChallenge.UnitTest.UseCase.ContatoUseCase.Adicionar
         {
             // Arrange
             var adicionarContatoDto = _builder.Default().WithName(nome).Build();            
-
             _contatoRepository.Setup(s => s.Adicionar(It.IsAny<Contato>()));
 
-
             // Act
-
             var result = Assert.Throws<Exception>(() => _adicionarContatoUseCase.Adicionar(adicionarContatoDto));
 
-
             // Assert
-
             Assert.Contains("Nome não pode ser nulo ou vazio", result.Message);
-
         }
 
         [Theory]        
@@ -72,16 +61,13 @@ namespace TechChallenge.UnitTest.UseCase.ContatoUseCase.Adicionar
         {
             // Arrange
             var adicionarContatoDto = _builder.Default().WithTelefone(telefone).Build();            
-
             _contatoRepository.Setup(s => s.Adicionar(It.IsAny<Contato>()));
-
 
             // Act
             var result = Assert.Throws<Exception>(() => _adicionarContatoUseCase.Adicionar(adicionarContatoDto));
 
             // Assert
             Assert.Contains("Telefone não pode ser nulo ou vazio", result.Message);
-
         }
 
         [Theory]
@@ -90,16 +76,13 @@ namespace TechChallenge.UnitTest.UseCase.ContatoUseCase.Adicionar
         {
             // Arrange
             var adicionarContatoDto = _builder.Default().WithTelefone(telefone).Build();
-
             _contatoRepository.Setup(s => s.Adicionar(It.IsAny<Contato>()));
-
 
             // Act
             var result = Assert.Throws<Exception>(() => _adicionarContatoUseCase.Adicionar(adicionarContatoDto));
 
             // Assert
             Assert.Contains("Foi atingido o número máximo de caracteres (10)", result.Message);
-
         }
 
         [Theory]
@@ -111,16 +94,13 @@ namespace TechChallenge.UnitTest.UseCase.ContatoUseCase.Adicionar
         {
             // Arrange
             var adicionarContatoDto = _builder.Default().WithTelefone(telefone).Build();
-
             _contatoRepository.Setup(s => s.Adicionar(It.IsAny<Contato>()));
-
 
             // Act
             var result = Assert.Throws<Exception>(() => _adicionarContatoUseCase.Adicionar(adicionarContatoDto));
 
             // Assert
             Assert.Contains("Telefone inválido", result.Message);
-
         }
 
         [Theory]        
@@ -130,7 +110,6 @@ namespace TechChallenge.UnitTest.UseCase.ContatoUseCase.Adicionar
         {
             // Arrange
             var adicionarContatoDto = _builder.Default().WithEmail(email).Build();            
-
             _contatoRepository.Setup(s => s.Adicionar(It.IsAny<Contato>()));
 
             // Act
@@ -138,7 +117,6 @@ namespace TechChallenge.UnitTest.UseCase.ContatoUseCase.Adicionar
 
             // Assert
             Assert.Contains("Email não pode ser nulo ou vazio", result.Message);
-
         }
 
         [Theory]        
@@ -148,7 +126,6 @@ namespace TechChallenge.UnitTest.UseCase.ContatoUseCase.Adicionar
         {
             // Arrange
             var adicionarContatoDto = _builder.Default().WithEmail(email).Build();
-
             _contatoRepository.Setup(s => s.Adicionar(It.IsAny<Contato>()));
 
             // Act

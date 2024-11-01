@@ -11,6 +11,7 @@ namespace TechChallenge.Domain.RegionalAggregate
 
         public Regional Regional { get; set; }
 
+        
         protected Contato(string nome, string telefone, string email, Guid regionalId)
         {
             Nome = nome;
