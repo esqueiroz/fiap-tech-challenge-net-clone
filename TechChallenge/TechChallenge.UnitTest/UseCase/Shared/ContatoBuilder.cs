@@ -1,7 +1,7 @@
 ﻿using Bogus;
 using TechChallenge.Domain.RegionalAggregate;
 
-namespace TechChallenge.UnitTest.UseCase.ContatoUseCase.Shared
+namespace TechChallenge.UnitTest.UseCase.Shared
 {
     public class ContatoBuilder
     {

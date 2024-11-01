@@ -1,6 +1,6 @@
 ﻿using Moq;
 using TechChallenge.Domain.Interfaces;
-using TechChallenge.UnitTest.UseCase.RegionalUseCase.Shared;
+using TechChallenge.UnitTest.UseCase.Shared;
 using TechChallenge.UseCase.Interfaces;
 using TechChallenge.UseCase.RegionalUseCase.Obter;
 
@@ -35,7 +35,7 @@ namespace TechChallenge.UnitTest.UseCase.RegionalUseCase.Obter
         }
 
         [Fact]
-        public void ObterRegionalUseCase_Obter_ContatoNaoExistente()
+        public void ObterRegionalUseCase_Obter_RegionalNaoExistente()
         {
             // Arrange            
             _regionalRepository.Setup(s => s.ObterPorId(Guid.NewGuid()));

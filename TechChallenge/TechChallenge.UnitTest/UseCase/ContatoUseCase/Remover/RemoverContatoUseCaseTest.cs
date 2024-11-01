@@ -1,37 +1,40 @@
 ﻿using Moq;
 using TechChallenge.Domain.Interfaces;
+using TechChallenge.Domain.RegionalAggregate;
 using TechChallenge.UnitTest.UseCase.Shared;
-using TechChallenge.UseCase.ContatoUseCase.Obter;
+using TechChallenge.UseCase.ContatoUseCase.Remover;
 using TechChallenge.UseCase.Interfaces;
 
-namespace TechChallenge.UnitTest.UseCase.ContatoUseCase.Obter
+namespace TechChallenge.UnitTest.UseCase.ContatoUseCase.Remover
 {
-    public class ObterContatoUseCaseTest
+    public class RemoverRegionalUseCaseTest
     {
         private readonly Mock<IContatoRepository> _contatoRepository;
-        private readonly IObterContatoUseCase _obterContatoUseCase;
+        private readonly IRemoverContatoUseCase _removerContatoUseCase;
         private readonly ContatoBuilder _contatoBuilder;
 
-        public ObterContatoUseCaseTest()
+        public RemoverRegionalUseCaseTest()
         {
             _contatoRepository = new Mock<IContatoRepository>();
-            _obterContatoUseCase = new ObterContatoUseCase(_contatoRepository.Object);
+            _removerContatoUseCase = new RemoverContatoUseCase(_contatoRepository.Object);
             _contatoBuilder = new ContatoBuilder();
         }
 
         [Fact]
-        public void ObterContatoUseCase_Obter_Sucesso()
+        public void RemoverContatoUseCase_Remover_Sucesso()
         {
             // Arrange            
             _contatoRepository.Setup(s => s.ObterPorId(It.IsAny<Guid>()))
                 .Returns(_contatoBuilder.Build());
 
+            _contatoRepository.Setup(s => s.Remover(It.IsAny<Contato>()));
+
             // Act
-            var result = _obterContatoUseCase.ObterPorId(Guid.NewGuid());
+            _removerContatoUseCase.Remover(Guid.NewGuid());
 
             // Assert            
             _contatoRepository.Verify(x => x.ObterPorId(It.IsAny<Guid>()), Times.Once());
-            Assert.True(result.Nome == _contatoBuilder.Build().Nome);
+            _contatoRepository.Verify(x => x.Remover(It.IsAny<Contato>()), Times.Once());
         }
 
         [Fact]
@@ -41,11 +44,11 @@ namespace TechChallenge.UnitTest.UseCase.ContatoUseCase.Obter
             _contatoRepository.Setup(s => s.ObterPorId(Guid.NewGuid()));
 
             // Act            
-            var result = Assert.Throws<Exception>(() => _obterContatoUseCase.ObterPorId(Guid.NewGuid()));
+            var result = Assert.Throws<Exception>(() => _removerContatoUseCase.Remover(Guid.NewGuid()));
 
             // Assert            
             Assert.Contains("Contato não encontrado", result.Message);
-            
+
         }
     }
 }

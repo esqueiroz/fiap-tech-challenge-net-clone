@@ -32,12 +32,12 @@ namespace TechChallenge.UseCase.RegionalUseCase.Listar
 
             var contatos = _contatoRepository.ListarPorRegional(regional.Id);
 
-            if (contatos.Count == 0)
+            if (contatos is null || contatos.Count == 0)
             {
                 throw new Exception("Regional não possui contatos vinculados");
             }
 
-            return _contatoRepository.ListarPorRegional(regional.Id).Select(x => Mapper(x)).ToList();
+            return contatos.Select(x => Mapper(x)).ToList();
         }
 
         public IList<ContatosPorRegionalDto> ListarContatosPorDdd(int ddd)
@@ -51,12 +51,12 @@ namespace TechChallenge.UseCase.RegionalUseCase.Listar
 
             var contatos = _contatoRepository.ListarPorRegional(regional.Id);
 
-            if (contatos.Count == 0)
+            if (contatos is null || contatos.Count == 0)
             {
                 throw new Exception("Regional não possui contatos vinculados");
             }
 
-            return _contatoRepository.ListarPorRegional(regional.Id).Select(x => Mapper(x)).ToList();
+            return contatos.Select(x => Mapper(x)).ToList();
         }
 
         private RegionalDto Mapper(Regional regional)
