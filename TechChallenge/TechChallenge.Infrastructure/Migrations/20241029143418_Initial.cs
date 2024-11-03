@@ -19,7 +19,7 @@ namespace TechChallenge.Infrastructure.Migrations
                     Estado = table.Column<string>(type: "character varying(2)", maxLength: 2, nullable: false),
                     Nome = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     CriadoEm = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    AlteradoEm = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    AlteradoEm = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -36,7 +36,7 @@ namespace TechChallenge.Infrastructure.Migrations
                     Email = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
                     RegionalId = table.Column<Guid>(type: "uuid", nullable: false),
                     CriadoEm = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    AlteradoEm = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    AlteradoEm = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -53,6 +53,7 @@ namespace TechChallenge.Infrastructure.Migrations
                 name: "IX_Contato_RegionalId",
                 table: "Contato",
                 column: "RegionalId");
+            
         }
 
         /// <inheritdoc />
