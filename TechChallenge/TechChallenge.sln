@@ -3,19 +3,28 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge.Api", "TechChallenge.Api\TechChallenge.Api.csproj", "{6FD2918B-80C2-4517-99D1-13F1FA01B69C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallenge.Api", "TechChallenge.Api\TechChallenge.Api.csproj", "{6FD2918B-80C2-4517-99D1-13F1FA01B69C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge.UseCase", "TechChallenge.UseCase\TechChallenge.UseCase.csproj", "{CF190A58-A21F-43D7-BACB-C0CB8713F638}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallenge.UseCase", "TechChallenge.UseCase\TechChallenge.UseCase.csproj", "{CF190A58-A21F-43D7-BACB-C0CB8713F638}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge.Domain", "TechChallenge.Domain\TechChallenge.Domain.csproj", "{E4F44FB6-4790-443B-AD12-1F999FB694F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallenge.Domain", "TechChallenge.Domain\TechChallenge.Domain.csproj", "{E4F44FB6-4790-443B-AD12-1F999FB694F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge.Infrastructure", "TechChallenge.Infrastructure\TechChallenge.Infrastructure.csproj", "{88C7CC37-695B-4A4F-B502-35842ABAA177}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallenge.Infrastructure", "TechChallenge.Infrastructure\TechChallenge.Infrastructure.csproj", "{88C7CC37-695B-4A4F-B502-35842ABAA177}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechChallenge.UnitTest", "TechChallenge.UnitTest\TechChallenge.UnitTest.csproj", "{88605868-F71A-489D-9AD7-8728A2BCBFFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechChallenge.UnitTest", "TechChallenge.UnitTest\TechChallenge.UnitTest.csproj", "{88605868-F71A-489D-9AD7-8728A2BCBFFC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{DD191B06-8110-4875-9371-F4854BD68B2F}"
+	ProjectSection(SolutionItems) = preProject
+		compose.yml = compose.yml
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9284AA56-FB21-46C8-9221-8ED049E8BE27}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{6DE5D438-48A6-40F3-B39B-011D931001E8}"
+	ProjectSection(SolutionItems) = preProject
+		prometheus.yaml = prometheus.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +62,7 @@ Global
 		{E4F44FB6-4790-443B-AD12-1F999FB694F1} = {DD191B06-8110-4875-9371-F4854BD68B2F}
 		{88C7CC37-695B-4A4F-B502-35842ABAA177} = {DD191B06-8110-4875-9371-F4854BD68B2F}
 		{88605868-F71A-489D-9AD7-8728A2BCBFFC} = {9284AA56-FB21-46C8-9221-8ED049E8BE27}
+		{6DE5D438-48A6-40F3-B39B-011D931001E8} = {DD191B06-8110-4875-9371-F4854BD68B2F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {970403D0-EEDC-46A8-B047-1657C0F54435}

@@ -1,5 +1,6 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Prometheus;
 using System.Text.Json.Serialization;
 using TechChallenge.Domain.Interfaces;
 using TechChallenge.Infrastructure.Repositories;
@@ -63,16 +64,22 @@ builder.Services.AddScoped<IRemoverContatoUseCase, RemoverContatoUseCase>();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
+app.UseMetricServer(50505, "/metrics");
+app.UseRouting();
+app.UseHttpMetrics();
+
 app.Run();
+
+

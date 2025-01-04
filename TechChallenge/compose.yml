@@ -1,0 +1,47 @@
+networks:
+  monitoring:
+    driver: bridge
+services:
+  web_api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    container_name: TechApi
+    build: .
+    ports:
+      - 8080:8080
+    depends_on:
+      - "db"
+  db:
+    image: postgres
+    container_name: postgres_db
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: 102030
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  prometheus:
+    image: prom/prometheus:v2.37.9
+    container_name: prometheus
+    ports:
+      - 9090:9090
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yaml'
+    volumes:
+      - ./config/prometheus.yaml:/etc/prometheus/prometheus.yaml
+      - ./data:/prometheus      
+    restart: unless-stopped
+  grafana:
+    image: grafana/grafana-oss:latest
+    container_name: grafana
+    ports:
+      - '3000:3000'
+    volumes:
+      - grafana-data:/var/lib/grafana
+    restart: unless-stopped
+volumes:
+  postgres_data:
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local  
