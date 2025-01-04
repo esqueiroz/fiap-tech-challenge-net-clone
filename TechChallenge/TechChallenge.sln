@@ -17,14 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{DD191B06-811
 	ProjectSection(SolutionItems) = preProject
 		compose.yml = compose.yml
 		Dockerfile = Dockerfile
+		prometheus.yaml = prometheus.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9284AA56-FB21-46C8-9221-8ED049E8BE27}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{6DE5D438-48A6-40F3-B39B-011D931001E8}"
-	ProjectSection(SolutionItems) = preProject
-		prometheus.yaml = prometheus.yaml
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,7 +58,6 @@ Global
 		{E4F44FB6-4790-443B-AD12-1F999FB694F1} = {DD191B06-8110-4875-9371-F4854BD68B2F}
 		{88C7CC37-695B-4A4F-B502-35842ABAA177} = {DD191B06-8110-4875-9371-F4854BD68B2F}
 		{88605868-F71A-489D-9AD7-8728A2BCBFFC} = {9284AA56-FB21-46C8-9221-8ED049E8BE27}
-		{6DE5D438-48A6-40F3-B39B-011D931001E8} = {DD191B06-8110-4875-9371-F4854BD68B2F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {970403D0-EEDC-46A8-B047-1657C0F54435}

@@ -64,21 +64,14 @@ builder.Services.AddScoped<IRemoverContatoUseCase, RemoverContatoUseCase>();
 
 var app = builder.Build();
 
-//if (app.Environment.IsDevelopment())
-//{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-//}
-
-//app.UseHttpsRedirection();
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseAuthorization();
 
 app.MapControllers();
 
-app.UseMetricServer(50505, "/metrics");
-app.UseRouting();
-app.UseHttpMetrics();
+app.MapMetrics();
 
 app.Run();
 
