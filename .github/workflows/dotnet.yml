@@ -24,5 +24,7 @@ jobs:
       run: dotnet restore ./TechChallenge/TechChallenge.Api/TechChallenge.Api.csproj
     - name: Build
       run: dotnet build --no-restore ./TechChallenge/TechChallenge.Api/TechChallenge.Api.csproj
-    - name: Test
+    - name: Unit Test
       run: dotnet test --verbosity normal ./TechChallenge/TechChallenge.UnitTest/TechChallenge.UnitTest.csproj
+    - name: Integration Test
+      run: dotnet test --verbosity normal ./TechChallenge/TechChallenge.IntegrationTest/TechChallenge.IntegrationTest.csproj
