@@ -1,5 +1,6 @@
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Prometheus;
 using System.Text.Json.Serialization;
 using TechChallenge.Domain.Interfaces;
@@ -75,4 +76,4 @@ app.MapMetrics();
 
 app.Run();
 
-
+public partial class Program { };
