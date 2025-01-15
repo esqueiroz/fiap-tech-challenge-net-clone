@@ -40,7 +40,7 @@ jobs:
       if: always()
       with:
           name: Test Report
-          path: "${{ env.solution_dir }}/**/*.trx"
+          path: "${{ github.workspace }}/**/*.trx"
           reporter: dotnet-trx
 
     - name: Upload Test Result Files
