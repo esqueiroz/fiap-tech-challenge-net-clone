@@ -119,6 +119,6 @@ namespace TechChallenge.IntegrationTest.Tests
         //    var mensagemErro = await responseGetById.Content.ReadAsStringAsync();
         //    Assert.Equal(System.Net.HttpStatusCode.BadRequest, responseGetById.StatusCode);
         //    Assert.Equal("Contato não encontrado", mensagemErro);
-        }
+        //}
     }
 }
