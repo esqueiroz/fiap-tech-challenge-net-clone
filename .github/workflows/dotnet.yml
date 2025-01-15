@@ -28,5 +28,5 @@ jobs:
       run: dotnet test --verbosity normal ./TechChallenge/TechChallenge.UnitTest/TechChallenge.UnitTest.csproj
     - name: Integration Test
       run: dotnet test --verbosity normal ./TechChallenge/TechChallenge.IntegrationTest/TechChallenge.IntegrationTest.csproj
-    - name: Publish Test Summary Results
-      run: npx github-actions-ctrf ctrf/ctrf-report.json
+    - name: Test Reporter
+      uses: dorny/test-reporter@v1.9.1         
