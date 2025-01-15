@@ -32,6 +32,7 @@ namespace TechChallenge.IntegrationTest.Factories
                     .UseSeeding((context, _) =>
                     {
                         var regionalId = Guid.Parse("a4ae0efb-a238-4a15-b3ef-434cf78fa265");
+
                         var contato1Id = Guid.Parse("8f0fdc40-9485-4f1f-82df-ba974bcf2b0b");
                         var contato2Id = Guid.Parse("6cd33da5-7984-46ff-8924-f05b1aadaaa6");
                         var contato3Id = Guid.Parse("664441ea-62ff-47d9-9aa2-cd4433f4b46b");
@@ -39,7 +40,7 @@ namespace TechChallenge.IntegrationTest.Factories
                         var regional = context.Set<Regional>().FirstOrDefault(b => b.Id == regionalId);
                         if (regional == null)
                         {
-                            context.Set<Regional>().Add(new Regional { Id = regionalId, Nome = "Regional Teste", Ddd = 31, Estado = "MG" });
+                            context.Set<Regional>().Add(new Regional { Id = regionalId, Nome = "Regional Teste 36", Ddd = 36, Estado = "MG" });
                             context.SaveChanges();
                         }
 

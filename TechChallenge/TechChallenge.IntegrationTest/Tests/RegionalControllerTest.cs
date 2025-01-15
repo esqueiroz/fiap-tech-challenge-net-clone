@@ -3,6 +3,7 @@ using TechChallenge.IntegrationTest.Factories;
 using TechChallenge.IntegrationTest.Fixtures;
 using TechChallenge.UseCase.RegionalUseCase.Adicionar;
 using TechChallenge.UseCase.RegionalUseCase.Alterar;
+using TechChallenge.UseCase.RegionalUseCase.Listar;
 using TechChallenge.UseCase.RegionalUseCase.Obter;
 using TechChallenge.UseCase.Shared;
 
@@ -32,6 +33,38 @@ namespace TechChallenge.IntegrationTest.Tests
         }
 
         [Fact]
+        public async Task RegionalController_ListarRegionaisPorDdd_Sucesso()
+        {
+            //Arrange
+            string ddd = "36";
+
+            //Act            
+            var response = await _client.GetAsync($"/regional/{ddd}/Contatos");
+
+            //Assert
+            response.EnsureSuccessStatusCode();
+            var responseData = await response.Content.ReadFromJsonAsync<List<ContatosPorRegionalDto>>();
+            Assert.NotEmpty(responseData);
+            Assert.True(responseData.Count > 0);
+        }
+
+        [Fact]
+        public async Task RegionalController_ListarRegionaisPorId_Sucesso()
+        {
+            //Arrange
+            string id = "a4ae0efb-a238-4a15-b3ef-434cf78fa265";
+
+            //Act            
+            var response = await _client.GetAsync($"/regional/{id}/Contatos");
+
+            //Assert
+            response.EnsureSuccessStatusCode();
+            var responseData = await response.Content.ReadFromJsonAsync<List<ContatosPorRegionalDto>>();
+            Assert.NotEmpty(responseData);
+            Assert.True(responseData.Count > 0);
+        }
+
+        [Fact]
         public async Task RegionalController_ObterPorIdRegional_Sucesso()
         {
             //Arrange
@@ -55,7 +88,7 @@ namespace TechChallenge.IntegrationTest.Tests
         public async Task RegionalController_AdicionarRegional_Sucesso()
         {
             //Arrange
-            var regional = new AdicionarRegionalDto { Ddd = 31, Estado = "MG", Nome = "Regional Teste"};
+            var regional = new AdicionarRegionalDto { Ddd = 39, Estado = "MG", Nome = "Regional Teste 39"};
 
             //Act            
             var response = await _client.PostAsJsonAsync($"/regional", regional);
