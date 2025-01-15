@@ -29,4 +29,6 @@ jobs:
     - name: Integration Test
       run: dotnet test --verbosity normal ./TechChallenge/TechChallenge.IntegrationTest/TechChallenge.IntegrationTest.csproj
     - name: Test Reporter
-      uses: dorny/test-reporter@v1.9.1         
+      uses: dorny/test-reporter@v1.9.1
+      with:
+        name: Teste de Nome
