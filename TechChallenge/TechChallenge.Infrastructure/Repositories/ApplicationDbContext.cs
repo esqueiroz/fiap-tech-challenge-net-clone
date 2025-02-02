@@ -23,11 +23,10 @@ namespace TechChallenge.Infrastructure.Repositories
         {
             if (!optionsBuilder.IsConfigured)
             {
-
                 IConfigurationRoot configuration = new ConfigurationBuilder()
                     .AddJsonFile(Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "../TechChallenge.Api/appsettings.json"))).Build();
 
-                optionsBuilder.UseNpgsql(configuration.GetConnectionString("ConnectionString"));
+                optionsBuilder.UseNpgsql(configuration.GetConnectionString("aspire - postgres"));
             }
         }
 

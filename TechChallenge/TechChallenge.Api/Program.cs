@@ -23,6 +23,8 @@ using TechChallenge.UseCase.RegionalUseCase.Remover;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.AddServiceDefaults();
+
 var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 const string serviceName = "TechChallenge";
 
@@ -54,7 +56,8 @@ builder.Services.AddOpenTelemetry()
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseNpgsql(configuration.GetConnectionString("ConnectionString"));
+    //options.UseNpgsql(configuration.GetConnectionString("aspire - postgres"));
+    options.UseNpgsql(builder.Configuration.GetConnectionString("aspire-postgres"));
 }, ServiceLifetime.Scoped);
 
 builder.Services.AddScoped<IRegionalRepository, RegionalRepository>();
@@ -86,6 +89,14 @@ builder.Services.AddScoped<IListarContatoUseCase, ListarContatosUseCase>();
 builder.Services.AddScoped<IRemoverContatoUseCase, RemoverContatoUseCase>();
 
 var app = builder.Build();
+
+/*using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    dbContext.Database.Migrate();
+}*/
+
+app.MapDefaultEndpoints();
 
 app.UseSwagger();
 app.UseSwaggerUI();
